@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MOT testing service - Sign in (local stand-in)</title>
+</head>
+<body>
+  <h1>MOT testing service</h1>
+  <p>Local stand-in page for testing. This is not the live DVSA site.</p>
+
+  <div id="error" role="alert" hidden></div>
+
+  <form id="Login" action="#" method="post">
+    <fieldset>
+      <legend>Sign in</legend>
+      <div class="form-group">
+        <label for="username">User ID</label>
+        <input type="text" id="username" name="username" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password">
+      </div>
+      <button type="submit" id="sign-in">Sign in</button>
+    </fieldset>
+  </form>
+
+  <p><a href="#">Forgotten your password?</a></p>
+  <p><a href="#">Create a new account</a></p>
+
+  <script>
+    var form = document.getElementById('Login');
+    var error = document.getElementById('error');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var user = document.getElementById('username').value.trim();
+      var pass = document.getElementById('password').value;
+
+      if (user === '' || pass === '') {
+        error.textContent = 'Enter your User ID and password';
+        error.hidden = false;
+      } else if (user === 'demo_tester' && pass === 'demo_password') {
+        document.body.innerHTML = '<h1>Welcome</h1><p>You are signed in.</p>';
+      } else {
+        error.textContent = 'Your User ID or password is incorrect';
+        error.hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>
